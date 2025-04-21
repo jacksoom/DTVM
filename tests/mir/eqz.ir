@@ -1,0 +1,37 @@
+; RUN: ircompiler %s -f 0 --args 0 | FileCheck %s -check-prefix CHECK0_1
+; RUN: ircompiler %s -f 0 --args 1 | FileCheck %s -check-prefix CHECK0_2
+; RUN: ircompiler %s -f 0 --args -2147483648 | FileCheck %s -check-prefix CHECK0_3
+; RUN: ircompiler %s -f 0 --args 2147483647 | FileCheck %s -check-prefix CHECK0_4
+; RUN: ircompiler %s -f 0 --args -1 | FileCheck %s -check-prefix CHECK0_5
+
+; CHECK0_1: 0x1:i32
+; CHECK0_2: 0x0:i32
+; CHECK0_3: 0x0:i32
+; CHECK0_4: 0x0:i32
+; CHECK0_5: 0x0:i32
+
+func %0 (i32) -> i32 {
+    var $1 i32
+@0:
+    $1 = cmp ieq ($0, const.i32 0)
+    return $1
+}
+
+; RUN: ircompiler %s -f 1 --args 0 | FileCheck %s -check-prefix CHECK1_1
+; RUN: ircompiler %s -f 1 --args 1 | FileCheck %s -check-prefix CHECK1_2
+; RUN: ircompiler %s -f 1 --args -9223372036854775808 | FileCheck %s -check-prefix CHECK1_3
+; RUN: ircompiler %s -f 1 --args 9223372036854775807 | FileCheck %s -check-prefix CHECK1_4
+; RUN: ircompiler %s -f 1 --args -1 | FileCheck %s -check-prefix CHECK1_5
+
+; CHECK1_1: 0x1:i32
+; CHECK1_2: 0x0:i32
+; CHECK1_3: 0x0:i32
+; CHECK1_4: 0x0:i32
+; CHECK1_5: 0x0:i32
+
+func %1 (i64) -> i32 {
+    var $1 i32
+@0:
+    $1 = cmp ieq ($0, const.i64 0)
+    return $1
+}

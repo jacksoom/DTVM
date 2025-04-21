@@ -1,0 +1,8 @@
+; RUN: ircompiler %s -f 0 --args 0 | FileCheck %s --allow-empty
+
+; CHECK: {{^$}}
+
+func %0 (void*) {
+@0:
+    return
+}

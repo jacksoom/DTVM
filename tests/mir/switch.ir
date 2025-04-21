@@ -1,0 +1,143 @@
+; RUN: ircompiler %s -f 0 --args -2 20 | FileCheck %s -check-prefix CHECK0_1
+; RUN: ircompiler %s -f 0 --args -1 2 | FileCheck %s -check-prefix CHECK0_2
+; RUN: ircompiler %s -f 0 --args 0 3 | FileCheck %s -check-prefix CHECK0_3
+; RUN: ircompiler %s -f 0 --args 1 21 | FileCheck %s -check-prefix CHECK0_4
+; RUN: ircompiler %s -f 0 --args 2 18 | FileCheck %s -check-prefix CHECK0_5
+; RUN: ircompiler %s -f 0 --args 3 18 | FileCheck %s -check-prefix CHECK0_6
+
+; CHECK0_1: 0xffffffec:i32
+; CHECK0_2: 0x3:i32
+; CHECK0_3: 0x2:i32
+; CHECK0_4: 0x2a:i32
+; CHECK0_5: 0x9:i32
+; CHECK0_6: 0x0:i32
+
+func %0 (i32, i32) -> i32 {
+    var $2 i32
+@0:
+    switch $0, @6 [
+        -2 -> @1,
+        -1 -> @2,
+         0 -> @3,
+         1 -> @4,
+         2 -> @5
+    ]
+@1:
+    $2 = sub(const.i32 0, $1)
+    br @7
+@2:
+    $2 = add($1, const.i32 1)
+    br @7
+@3:
+    $2 = sub($1, const.i32 1)
+    br @7
+@4:
+    $2 = mul($1, const.i32 2)
+    br @7
+@5:
+    $2 = sdiv($1, const.i32 2)
+    br @7
+@6:
+    $2 = const.i32 0
+    br @7
+@7:
+    return $2
+}
+
+; RUN: ircompiler %s -f 1 --args 2 20 | FileCheck %s -check-prefix CHECK1_1
+; RUN: ircompiler %s -f 1 --args 3 2 | FileCheck %s -check-prefix CHECK1_2
+; RUN: ircompiler %s -f 1 --args 4 3 | FileCheck %s -check-prefix CHECK1_3
+; RUN: ircompiler %s -f 1 --args 5 21 | FileCheck %s -check-prefix CHECK1_4
+; RUN: ircompiler %s -f 1 --args 6 18 | FileCheck %s -check-prefix CHECK1_5
+; RUN: ircompiler %s -f 1 --args 7 18 | FileCheck %s -check-prefix CHECK1_6
+
+; CHECK1_1: 0xffffffffffffffec:i64
+; CHECK1_2: 0x3:i64
+; CHECK1_3: 0x2:i64
+; CHECK1_4: 0x2a:i64
+; CHECK1_5: 0x9:i64
+; CHECK1_6: 0x0:i64
+
+func %1 (i64, i64) -> i64 {
+    var $2 i64
+@0:
+    switch $0, @6 [
+        2 -> @1,
+        3 -> @2,
+        4 -> @3,
+        5 -> @4,
+        6 -> @5
+    ]
+@1:
+    $2 = sub(const.i64 0, $1)
+    br @7
+@2:
+    $2 = add($1, const.i64 1)
+    br @7
+@3:
+    $2 = sub($1, const.i64 1)
+    br @7
+@4:
+    $2 = mul($1, const.i64 2)
+    br @7
+@5:
+    $2 = sdiv($1, const.i64 2)
+    br @7
+@6:
+    $2 = const.i64 0
+    br @7
+@7:
+    return $2
+}
+
+; RUN: ircompiler %s -f 2 --args -2 | FileCheck %s -check-prefix CHECK2_1
+; RUN: ircompiler %s -f 2 --args -1 | FileCheck %s -check-prefix CHECK2_2
+; RUN: ircompiler %s -f 2 --args 0 | FileCheck %s -check-prefix CHECK2_3
+; RUN: ircompiler %s -f 2 --args 1 | FileCheck %s -check-prefix CHECK2_4
+; RUN: ircompiler %s -f 2 --args 2 | FileCheck %s -check-prefix CHECK2_5
+; RUN: ircompiler %s -f 2 --args 3 | FileCheck %s -check-prefix CHECK2_6
+; RUN: ircompiler %s -f 2 --args 4 | FileCheck %s -check-prefix CHECK2_7
+; RUN: ircompiler %s -f 2 --args 5 | FileCheck %s -check-prefix CHECK2_8
+; RUN: ircompiler %s -f 2 --args 6 | FileCheck %s -check-prefix CHECK2_9
+
+; CHECK2_1: 0x3e7:i64
+; CHECK2_2: 0x3e7:i64
+; CHECK2_3: 0x6f:i64
+; CHECK2_4: 0xde:i64
+; CHECK2_5: 0x14d:i64
+; CHECK2_6: 0x1bc:i64
+; CHECK2_7: 0x22b:i64
+; CHECK2_8: 0x3e7:i64
+; CHECK2_9: 0x3e7:i64
+
+func %2 (i64) -> i64 {
+    var $1 i64
+@0:
+    switch $0, @6 [
+        0 -> @1,
+        1 -> @2,
+        2 -> @3,
+        3 -> @4,
+        4 -> @5
+    ]
+@1:
+    $1 = const.i64 111
+    br @7
+@2:
+    $1 = const.i64 222
+    br @7
+@3:
+    $1 = const.i64 333
+    br @7
+@4:
+    $1 = const.i64 444
+    br @7
+@5:
+    $1 = const.i64 555
+    br @7
+@6:
+    $1 = const.i64 999
+    br @7
+@7:
+    return $1
+}

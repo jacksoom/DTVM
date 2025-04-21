@@ -1,0 +1,20 @@
+; RUN: ircompiler %s -f 0 --args 5 | FileCheck %s -check-prefix CHECK
+; RUN: ircompiler %s -f 1 --args 3 4 | FileCheck %s -check-prefix CHECK2
+
+; CHECK: 0x5:i32
+func %0 (i32) -> i32 {
+@0:
+    br @1
+@1:
+    return $0
+}
+
+; CHECK2: 0x7:i32
+func %1 (i32, i32) -> i32 {
+    var $2 i32
+@0:
+    br @1
+@1:
+    $2 = add ($0, $1)
+    return $2
+}

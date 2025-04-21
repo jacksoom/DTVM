@@ -1,0 +1,21 @@
+; RUN: ircompiler %s -f 1 --args 20 | FileCheck %s
+
+; CHECK: 0x35:i32
+
+func %0 () -> f32 {
+    var $0 f32
+@0:
+    $0 = const.f32 0.10001
+    return $0
+}
+
+func %1 (i32) -> i32 {
+    var $1 i32
+    var $2 f32
+    var $3 i32
+@0:
+    $1 = add ($0, const.i32 11)
+    $2 = call %0 ()
+    $3 = add ($1, const.i32 22)
+    return $3
+}

@@ -1,0 +1,14 @@
+; RUN: ircompiler %s -f 1 | FileCheck %s --allow-empty
+
+; CHECK: {{^$}}
+
+func %0 () {
+@0:
+    return
+}
+
+func %1 () {
+@0:
+    call %0 ()
+    return
+}

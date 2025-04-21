@@ -1,0 +1,102 @@
+; RUN: ircompiler %s -f 0 --args 0 | FileCheck %s -check-prefix CHECK0_1
+; RUN: ircompiler %s -f 0 --args 1 | FileCheck %s -check-prefix CHECK0_2
+; RUN: ircompiler %s -f 0 --args 2147483647 | FileCheck %s -check-prefix CHECK0_3
+
+; CHECK0_1: 0x20:i32
+; CHECK0_2: 0x1f:i32
+; CHECK0_3: 0x1:i32
+
+func %0 (i32) -> i32 {
+    var $1 i32
+@0:
+    $1 = clz ($0)
+    return $1
+}
+
+
+; RUN: ircompiler %s -f 1 --args 0 | FileCheck %s -check-prefix CHECK1_1
+; RUN: ircompiler %s -f 1 --args 1 | FileCheck %s -check-prefix CHECK1_2
+; RUN: ircompiler %s -f 1 --args 9223372036854775807 | FileCheck %s -check-prefix CHECK1_3
+
+; CHECK1_1: 0x40:i64
+; CHECK1_2: 0x3f:i64
+; CHECK1_3: 0x1:i64
+
+func %1 (i64) -> i64 {
+    var $1 i64
+@0:
+    $1 = clz ($0)
+    return $1
+}
+
+
+; RUN: ircompiler %s -f 2 --args 0 | FileCheck %s -check-prefix CHECK2_1
+; RUN: ircompiler %s -f 2 --args 1 | FileCheck %s -check-prefix CHECK2_2
+; RUN: ircompiler %s -f 2 --args 16711680 | FileCheck %s -check-prefix CHECK2_3
+; RUN: ircompiler %s -f 2 --args 2147483647 | FileCheck %s -check-prefix CHECK2_4
+
+; CHECK2_1: 0x20:i32
+; CHECK2_2: 0x0:i32
+; CHECK2_3: 0x10:i32
+; CHECK2_4: 0x0:i32
+
+func %2 (i32) -> i32 {
+    var $1 i32
+@0:
+    $1 = ctz ($0)
+    return $1
+}
+
+
+; RUN: ircompiler %s -f 3 --args 0 | FileCheck %s -check-prefix CHECK3_1
+; RUN: ircompiler %s -f 3 --args 1 | FileCheck %s -check-prefix CHECK3_2
+; RUN: ircompiler %s -f 3 --args 1095216660480 | FileCheck %s -check-prefix CHECK3_3
+; RUN: ircompiler %s -f 3 --args 9223372036854775807 | FileCheck %s -check-prefix CHECK3_4
+
+; CHECK3_1: 0x40:i64
+; CHECK3_2: 0x0:i64
+; CHECK3_3: 0x20:i64
+; CHECK3_4: 0x0:i64
+
+func %3 (i64) -> i64 {
+    var $1 i64
+@0:
+    $1 = ctz ($0)
+    return $1
+}
+
+
+; RUN: ircompiler %s -f 4 --args 0 | FileCheck %s -check-prefix CHECK4_1
+; RUN: ircompiler %s -f 4 --args 1 | FileCheck %s -check-prefix CHECK4_2
+; RUN: ircompiler %s -f 4 --args 16711680 | FileCheck %s -check-prefix CHECK4_3
+; RUN: ircompiler %s -f 4 --args 2147483647 | FileCheck %s -check-prefix CHECK4_4
+
+; CHECK4_1: 0x0:i32
+; CHECK4_2: 0x1:i32
+; CHECK4_3: 0x8:i32
+; CHECK4_4: 0x1f:i32
+
+func %4 (i32) -> i32 {
+    var $1 i32
+@0:
+    $1 = popcnt ($0)
+    return $1
+}
+
+
+; RUN: ircompiler %s -f 5 --args 0 | FileCheck %s -check-prefix CHECK5_1
+; RUN: ircompiler %s -f 5 --args 1 | FileCheck %s -check-prefix CHECK5_2
+; RUN: ircompiler %s -f 5 --args 1095216660480 | FileCheck %s -check-prefix CHECK5_3
+; RUN: ircompiler %s -f 5 --args 9223372036854775807 | FileCheck %s -check-prefix CHECK5_4
+
+; CHECK5_1: 0x0:i64
+; CHECK5_2: 0x1:i64
+; CHECK5_3: 0x8:i64
+; CHECK5_4: 0x3f:i64
+
+func %5 (i64) -> i64 {
+    var $1 i64
+@0:
+    $1 = popcnt ($0)
+    return $1
+}

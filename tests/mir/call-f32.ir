@@ -1,0 +1,255 @@
+; RUN: ircompiler %s -f 0 --args 1 | FileCheck %s -check-prefix CHECK1
+; RUN: ircompiler %s -f 1 --args 1 2 | FileCheck %s -check-prefix CHECK2
+; RUN: ircompiler %s -f 2 --args 1 2 3 | FileCheck %s -check-prefix CHECK3
+; RUN: ircompiler %s -f 3 --args 1 2 3 4 | FileCheck %s -check-prefix CHECK4
+; RUN: ircompiler %s -f 4 --args 1 2 3 4 5 | FileCheck %s -check-prefix CHECK5
+; RUN: ircompiler %s -f 5 --args 1 2 3 4 5 6 | FileCheck %s -check-prefix CHECK6
+; RUN: ircompiler %s -f 6 --args 1 2 3 4 5 6 7 | FileCheck %s -check-prefix CHECK7
+; RUN: ircompiler %s -f 7 --args 1 2 3 4 5 6 7 8 | FileCheck %s -check-prefix CHECK8
+; RUN: ircompiler %s -f 8 --args 1 2 3 4 5 6 7 8 9 | FileCheck %s -check-prefix CHECK9
+; RUN: ircompiler %s -f 9 --args 1 2 3 4 5 6 7 8 9 10 | FileCheck %s -check-prefix CHECK10
+; RUN: ircompiler %s -f 10 --args 1 | FileCheck %s -check-prefix CHECK11
+; RUN: ircompiler %s -f 11 --args 1 2 | FileCheck %s -check-prefix CHECK12
+; RUN: ircompiler %s -f 12 --args 1 2 3 | FileCheck %s -check-prefix CHECK13
+; RUN: ircompiler %s -f 13 --args 1 2 3 4 | FileCheck %s -check-prefix CHECK14
+; RUN: ircompiler %s -f 14 --args 1 2 3 4 5 | FileCheck %s -check-prefix CHECK15
+; RUN: ircompiler %s -f 15 --args 1 2 3 4 5 6 | FileCheck %s -check-prefix CHECK16
+; RUN: ircompiler %s -f 16 --args 1 2 3 4 5 6 7 | FileCheck %s -check-prefix CHECK17
+; RUN: ircompiler %s -f 17 --args 1 2 3 4 5 6 7 8 | FileCheck %s -check-prefix CHECK18
+; RUN: ircompiler %s -f 18 --args 1 2 3 4 5 6 7 8 9 | FileCheck %s -check-prefix CHECK19
+; RUN: ircompiler %s -f 19 --args 1 2 3 4 5 6 7 8 9 10 | FileCheck %s -check-prefix CHECK20
+
+; CHECK1: 1:f32
+; CHECK2: 3:f32
+; CHECK3: 6:f32
+; CHECK4: 10:f32
+; CHECK5: 15:f32
+; CHECK6: 21:f32
+; CHECK7: 28:f32
+; CHECK8: 36:f32
+; CHECK9: 45:f32
+; CHECK10: 55:f32
+; CHECK11: 1:f32
+; CHECK12: 3:f32
+; CHECK13: 6:f32
+; CHECK14: 10:f32
+; CHECK15: 15:f32
+; CHECK16: 21:f32
+; CHECK17: 28:f32
+; CHECK18: 36:f32
+; CHECK19: 45:f32
+; CHECK20: 55:f32
+
+; 以下部分为形参个数为1-10个的callee函数
+
+func %0 (f32) -> f32 {
+@0:
+    return $0
+}
+
+func %1 (f32, f32) -> f32 {
+    var $2 f32
+@0:
+    $2 = add ($0, $1)
+    return $2
+}
+
+func %2 (f32, f32, f32) -> f32 {
+    var $3 f32
+    var $4 f32
+@0:
+    $3 = add ($0, $1)
+    $4 = add ($3, $2)
+    return $4
+}
+
+func %3 (f32, f32, f32, f32) -> f32 {
+    var $4 f32
+    var $5 f32
+    var $6 f32
+@0:
+    $4 = add ($0, $1)
+    $5 = add ($4, $2)
+    $6 = add ($5, $3)
+    return $6
+}
+
+func %4 (f32, f32, f32, f32, f32) -> f32 {
+    var $5 f32
+    var $6 f32
+    var $7 f32
+    var $8 f32
+@0:
+    $5 = add ($0, $1)
+    $6 = add ($5, $2)
+    $7 = add ($6, $3)
+    $8 = add ($7, $4)
+    return $8
+}
+
+func %5 (f32, f32, f32, f32, f32, f32) -> f32 {
+    var $6 f32
+    var $7 f32
+    var $8 f32
+    var $9 f32
+    var $10 f32
+@0:
+    $6 = add ($0, $1)
+    $7 = add ($6, $2) 
+    $8 = add ($7, $3)
+    $9 = add ($8, $4)
+    $10 = add ($9, $5)
+    return $10
+}
+
+func %6 (f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $7 f32
+    var $8 f32
+    var $9 f32
+    var $10 f32
+    var $11 f32
+    var $12 f32
+@0:
+    $7 = add ($0, $1)
+    $8 = add ($7, $2) 
+    $9 = add ($8, $3)
+    $10 = add ($9, $4)
+    $11 = add ($10, $5)
+    $12 = add ($11, $6)
+    return $12
+}
+
+func %7 (f32, f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $8 f32
+    var $9 f32
+    var $10 f32
+    var $11 f32
+    var $12 f32
+    var $13 f32
+    var $14 f32
+@0:
+    $8 = add ($0, $1)
+    $9 = add ($8, $2) 
+    $10 = add ($9, $3)
+    $11 = add ($10, $4)
+    $12 = add ($11, $5)
+    $13 = add ($12, $6)
+    $14 = add ($13, $7)
+    return $14
+}
+
+func %8 (f32, f32, f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $9 f32
+    var $10 f32
+    var $11 f32
+    var $12 f32
+    var $13 f32
+    var $14 f32
+    var $15 f32
+    var $16 f32
+@0:
+    $9 = add ($0, $1)
+    $10 = add ($9, $2) 
+    $11 = add ($10, $3)
+    $12 = add ($11, $4)
+    $13 = add ($12, $5)
+    $14 = add ($13, $6)
+    $15 = add ($14, $7)
+    $16 = add ($15, $8)
+    return $16
+}
+
+func %9 (f32, f32, f32, f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $10 f32
+    var $11 f32
+    var $12 f32
+    var $13 f32
+    var $14 f32
+    var $15 f32
+    var $16 f32
+    var $17 f32
+    var $18 f32
+@0:
+    $10 = add ($0, $1)
+    $11 = add ($10, $2) 
+    $12 = add ($11, $3)
+    $13 = add ($12, $4)
+    $14 = add ($13, $5)
+    $15 = add ($14, $6)
+    $16 = add ($15, $7)
+    $17 = add ($16, $8)
+    $18 = add ($17, $9)
+    return $18
+}
+
+; 以下部分为实参个数为1-10个的caller函数
+
+func %10 (f32) -> f32 {
+    var $1 f32
+@0:
+    $1 = call %0 ($0)
+    return $1
+}
+
+func %11 (f32, f32) -> f32 {
+    var $2 f32
+@0:
+    $2 = call %1 ($0, $1)
+    return $2
+}
+
+func %12 (f32, f32, f32) -> f32 {
+    var $3 f32
+@0:
+    $3 = call %2 ($0, $1, $2)
+    return $3
+}
+
+func %13 (f32, f32, f32, f32) -> f32 {
+    var $4 f32
+@0:
+    $4 = call %3 ($0, $1, $2, $3)
+    return $4
+}
+
+func %14 (f32, f32, f32, f32, f32) -> f32 {
+    var $5 f32
+@0:
+    $5 = call %4 ($0, $1, $2, $3, $4)
+    return $5
+}
+
+func %15 (f32, f32, f32, f32, f32, f32) -> f32 {
+    var $6 f32
+@0:
+    $6 = call %5 ($0, $1, $2, $3, $4, $5)
+    return $6
+}
+
+func %16 (f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $7 f32
+@0:
+    $7 = call %6 ($0, $1, $2, $3, $4, $5, $6)
+    return $7
+}
+
+func %17 (f32, f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $8 f32
+@0:
+    $8 = call %7 ($0, $1, $2, $3, $4, $5, $6, $7)
+    return $8
+}
+
+func %18 (f32, f32, f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $9 f32
+@0:
+    $9 = call %8 ($0, $1, $2, $3, $4, $5, $6, $7, $8)
+    return $9
+}
+
+func %19 (f32, f32, f32, f32, f32, f32, f32, f32, f32, f32) -> f32 {
+    var $10 f32
+@0:
+    $10 = call %9 ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9)
+    return $10
+}
