@@ -1,0 +1,39 @@
+# IDE
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+__MACOSX
+
+# Generated
+build*/
+cmake-build-*/
+bazel-*/
+
+# Cache
+.cache/
+
+# Test
+tests/**/*.wasm
+tests/mir/Output
+
+# Third Party
+src/third-party/*
+bin/
+compile_commands.json
+.local_bazel_registry/
+MODULE.bazel.lock
+# Bazel cache
+bazel-dtvm
+bazel-bin
+bazel-out
+bazel-testlogs
+
+# tmp test files
+/*.wat
+/*.wasm
+/*.wasm.hex
+/*.writen
+/*.writen.cpp
+/testsuites
