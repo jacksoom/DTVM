@@ -1,0 +1,18 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+// ============================================================================
+// export.def
+//
+// define all export kind
+//
+// ============================================================================
+
+#ifdef DEFINE_EXPORT_KIND
+
+DEFINE_EXPORT_KIND(FUNC,	0x0,	"func")
+DEFINE_EXPORT_KIND(TABLE,	0x1,	"table")
+DEFINE_EXPORT_KIND(MEMORY,	0x2,	"memory")
+DEFINE_EXPORT_KIND(GLOBAL,	0x3,	"global")
+
+#endif

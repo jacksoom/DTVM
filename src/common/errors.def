@@ -1,0 +1,192 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+/* DEFINE_ERROR(phase, subphase, code, message) */
+
+#ifdef DEFINE_ERROR
+
+DEFINE_ERROR(Unspecified,   None,   NoError, "")
+
+DEFINE_ERROR(BeforeLoad,    None,   InvalidFilePath,    "invalid file path")
+DEFINE_ERROR(BeforeLoad,    None,   FileAccessFailed,   "failed to access the file")
+DEFINE_ERROR(BeforeLoad,    None,   InvalidRawData,     "invalid raw data")
+DEFINE_ERROR(BeforeLoad,    None,   InvalidModuleName,  "invalid module name")
+
+// Host Module
+DEFINE_ERROR(Load,  None,   HostFunctionArrayLoadFailed,"failed to load host function array")
+DEFINE_ERROR(Load,  None,   DuplicateHostModule,        "duplicate host module")
+DEFINE_ERROR(Load,  None,   DuplicateHostFunction,      "duplicate host function")
+
+// Malformed Error: Header/Section/Common
+DEFINE_ERROR(Load,  None,   MagicNotDetected,       "magic header not detected")
+DEFINE_ERROR(Load,  None,   UnknownBinaryVersion,   "unknown binary version")
+DEFINE_ERROR(Load,  None,   UnexpectedEnd,          "unexpected end")
+DEFINE_ERROR(Load,  None,   LEBIntTooLoog,          "integer representation too long")
+DEFINE_ERROR(Load,  None,   LEBIntTooLarge,         "integer too large")
+DEFINE_ERROR(Load,  None,   ConstExprRequired,      "constant expression required")
+DEFINE_ERROR(Load,  None,   TypeMismatchOrConstExprRequired,  "type mismatch or constant expression required")
+DEFINE_ERROR(Load,  None,   SizeMinimumGreaterThenMaximum,    "size minimum must not be greater than maximum")
+DEFINE_ERROR(Load,  None,   SectionSizeMismath,     "section size mismatch")
+DEFINE_ERROR(Load,  None,   JunkAfterLastSection,   "junk after last section")
+
+// Malformed Error: UTF8 Encoding
+DEFINE_ERROR(Load,  None,   TooLongName,            "too long name string")
+DEFINE_ERROR(Load,  None,   InvalidUTF8Encoding,    "invalid UTF-8 encoding")
+DEFINE_ERROR(Load,  None,   SymbolAllocFaild,       "symbol allocation failed")
+
+// Malformed Error: About Unknown(Except Import) ...
+DEFINE_ERROR(Load,  None,   UnknownTypeIdx,         "unknown type")
+DEFINE_ERROR(Load,  None,   UnknownFunction,        "unknown function")
+DEFINE_ERROR(Load,  None,   UnknownTable,           "unknown table")
+DEFINE_ERROR(Load,  None,   UnknownMemory,          "unknown memory")
+DEFINE_ERROR(Load,  None,   UnknownGlobal,          "unknown global")
+DEFINE_ERROR(Load,  None,   UnknownLocal,           "unknown local")
+DEFINE_ERROR(Load,  None,   UnknownLabel,           "unknown label, unexpected end of section or function")
+
+// Malformed Error: About Invalid ...
+DEFINE_ERROR(Load,  None,   InvalidSectionId,       "invalid section id")
+DEFINE_ERROR(Load,  None,   InvalidType,            "invalid value type")
+DEFINE_ERROR(Load,  None,   InvalidFuncTypeFlag,    "invalid function type flag")
+DEFINE_ERROR(Load,  None,   InvalidLimitsFlag,      "invalid limits flag")
+DEFINE_ERROR(Load,  None,   InvalidImportKind,      "invalid import kind")
+DEFINE_ERROR(Load,  None,   InvalidExportKind,      "invalid export kind")
+DEFINE_ERROR(Load,  None,   InvalidMutability,      "invalid mutability")
+DEFINE_ERROR(Load,  None,   InvalidStartFuncType,   "invalid start function type")
+DEFINE_ERROR(Load,  None,   InvalidGasFuncType,     "invalid gas function type")
+
+// Malformed Error: Code Section
+DEFINE_ERROR(Load,  None,   UnsupportedOpcode,                "unsupported opcode")
+DEFINE_ERROR(Load,  None,   UnsupportedImport,                "unsupported import(table/memory/global)")
+DEFINE_ERROR(Load,  None,   TypeMismatch,                     "type mismatch")
+DEFINE_ERROR(Load,  None,   TypeMismatchStackSize,            "type mismatch: stack size does not match block type")
+DEFINE_ERROR(Load,  None,   TypeMismatchExpectDataStackEmpty, "type mismatch: expect data but stack was empty")
+DEFINE_ERROR(Load,  None,   TypeMismatchBrTableTargets,       "type mismatch: br_table targets must all use same result type")
+DEFINE_ERROR(Load,  None,   TypeMismatchElseMissing,          "type mismatch: else branch missing")
+DEFINE_ERROR(Load,  None,   TypeMismatchSelectStackEmpty,     "type mismatch: opcode select was found, but stack was empty")
+DEFINE_ERROR(Load,  None,   ElseMismatchIf,                   "opcode else found without matched opcode if")
+DEFINE_ERROR(Load,  None,   GlobalIsImmutable,                "global is immutable")
+DEFINE_ERROR(Load,  None,   ZeroFlagExpected,                 "zero flag expected")
+DEFINE_ERROR(Load,  None,   AlignMustLargerThanNatural,       "alignment must not be larger than natural")
+DEFINE_ERROR(Load,  None,   BlockStackNotEmptyAtEndOfFunction,"block stack not empty at end of function")
+DEFINE_ERROR(Load,  None,   OpcodesRemainAfterEndOfFunction,  "opcodes remain after end of function")
+
+// Malformed Error: Name Section
+DEFINE_ERROR(Load,  None,   OutOfOrderNameSubSection,         "out of order name sub-section")
+DEFINE_ERROR(Load,  None,   DuplicateSubSection,              "duplicate sub-section")
+DEFINE_ERROR(Load,  None,   InvalidNameSubSection,            "invalid name sub-section")
+DEFINE_ERROR(Load,  None,   OutOfRangeFuncIdx,                "out-of-range function index")
+DEFINE_ERROR(Load,  None,   OutOfOrderFuncIdx,                "out-of-order function index")
+DEFINE_ERROR(Load,  None,   DuplicateFuncName,                "duplicate function name")
+DEFINE_ERROR(Load,  None,   InvalidNameSectionPosition,       "name section must appear after data section")
+
+// Malformed Error: Others
+DEFINE_ERROR(Load,  None,   DuplicateExportName,    "duplicate export name")
+DEFINE_ERROR(Load,  None,   FuncCodeInconsistent,   "function and code section have inconsistent lengths")
+DEFINE_ERROR(Load,  None,   DataSegAndDataCountInconsistent,    "data count and data section have inconsistent lengths")
+
+// Link Error: Import
+DEFINE_ERROR(Load,  None,   UnknownImport,          "unknown import")
+DEFINE_ERROR(Load,  None,   IncompatibleImportType, "incompatible import type")
+
+// Limit Error: About Too Many ...
+DEFINE_ERROR(Load,  None,   TooManyItems,           "too many items") // fallback for unknown `too many` error
+DEFINE_ERROR(Load,  None,   TooManyTypes,           "too many types")
+DEFINE_ERROR(Load,  None,   TooManyParams,          "too many params")
+DEFINE_ERROR(Load,  None,   TooManyReturns,         "invalid result arity")
+DEFINE_ERROR(Load,  None,   TooManyImports,         "too many imports")
+DEFINE_ERROR(Load,  None,   TooManyFunctions,       "too many functions")
+DEFINE_ERROR(Load,  None,   TooManyTables,          "multiple tables")
+DEFINE_ERROR(Load,  None,   TooManyMemories,        "multiple memories")
+DEFINE_ERROR(Load,  None,   TooManyGlobals,         "too many globals")
+DEFINE_ERROR(Load,  None,   TooManyExports,         "too many exports")
+DEFINE_ERROR(Load,  None,   TooManyElemSegments,    "too many element segments")
+DEFINE_ERROR(Load,  None,   TooManyDataSegments,    "too many data segments")
+DEFINE_ERROR(Load,  None,   TooManyLocals,          "too many locals")
+
+// Limit Error: About Size ...
+DEFINE_ERROR(Load,  None,   ModuleSizeTooLarge,     "module size too large")
+DEFINE_ERROR(Load,  None,   SectionSizeTooLarge,    "section size too large")
+DEFINE_ERROR(Load,  None,   FunctionSizeTooLarge,   "function size too large")
+DEFINE_ERROR(Load,  None,   TableSizeTooLarge,      "table size too large")
+DEFINE_ERROR(Load,  None,   MemorySizeTooLarge,     "memory size must be at most 65536 pages (4GiB)")
+DEFINE_ERROR(Load,  None,   DataSegmentTooLarge,    "data segment too large")
+DEFINE_ERROR(Load,  None,   DataSectionTooLarge,    "data section too large")
+DEFINE_ERROR(Load,  None,   CodeSectionTooLarge,    "code section too large")
+
+
+DEFINE_ERROR(Instantiation, None,   DataSegmentDoesNotFit,      "data segment does not fit")
+DEFINE_ERROR(Instantiation, None,   ElementsSegmentDoesNotFit,  "elements segment does not fit")
+
+
+DEFINE_ERROR(Compilation,   None,   UnsupportedCPU,             "unsupported cpu")
+DEFINE_ERROR(Compilation,   None,   AsmJitFailed,               "asmjit failed to generate code")
+
+DEFINE_ERROR(Compilation,   Lexing,         UnsupportedToken,           "unsupported token")
+DEFINE_ERROR(Compilation,   Parsing,        NoMatchedSyntax,            "no matched syntax")
+DEFINE_ERROR(Compilation,   Parsing,        UnexpectedVarIdx,           "unexpected Variable Index")
+DEFINE_ERROR(Compilation,   Parsing,        UnexpectedFuncIdx,          "unexpected Function Index")
+DEFINE_ERROR(Compilation,   ContextInit,    TargetLookupFailed,         "failed to lookup target machine")
+DEFINE_ERROR(Compilation,   ContextInit,    UnexpectedSubtarget,        "unexpected subtarget")
+DEFINE_ERROR(Compilation,   MIREmission,    MIRVerifyingFailed,         "failed to verify MIR")
+DEFINE_ERROR(Compilation,   CgIREmission,   NoMatchedInstruction,       "no matched instruction")
+DEFINE_ERROR(Compilation,   RegAlloc,       RegAllocFailed,             "failed to allocate register")
+DEFINE_ERROR(Compilation,   ObjectEmission, ObjectFileCreationFailed,   "failed to create object file")
+DEFINE_ERROR(Compilation,   ObjectEmission, UnexpectedObjectFileFormat, "unexpected object file format")
+DEFINE_ERROR(Compilation,   ObjectEmission, ObjectFileResolvingFailed,  "failed to resolve object file")
+
+
+DEFINE_ERROR(BeforeExecution,   None,   CannotFindFunction, "cannot find function")
+DEFINE_ERROR(BeforeExecution,   None,   UnexpectedNumArgs,  "unexpected number of arguments")
+DEFINE_ERROR(BeforeExecution,   None,   InvalidArgument,    "invalid argument")
+DEFINE_ERROR(BeforeExecution,   None,   ArgOutOfRange,      "arg out of range")
+DEFINE_ERROR(BeforeExecution,   None,   UnexpectedArgType,  "unexpected argument type")
+DEFINE_ERROR(BeforeExecution,   None,   UnexpectedFuncType, "unexpected function type")
+
+
+DEFINE_ERROR(Execution,     None,   IntegerOverflow,            "integer overflow")
+DEFINE_ERROR(Execution,     None,   IntegerDivByZero,           "integer divide by zero")
+DEFINE_ERROR(Execution,     None,   OutOfBoundsMemory,          "out of bounds memory access")
+DEFINE_ERROR(Execution,     None,   InvalidConversionToInteger, "invalid conversion to integer")
+DEFINE_ERROR(Execution,     None,   CallStackExhausted,         "call stack exhausted")
+DEFINE_ERROR(Execution,     None,   IndirectCallTypeMismatch,   "indirect call type mismatch")
+DEFINE_ERROR(Execution,     None,   UndefinedElement,           "undefined element")
+DEFINE_ERROR(Execution,     None,   Unreachable,                "unreachable")
+DEFINE_ERROR(Execution,     None,   UninitializedElement,       "uninitialized element")
+DEFINE_ERROR(Execution,     None,   GasLimitExceeded,           "out of gas")
+DEFINE_ERROR(Execution,     None,   InstanceExit,               "instance exit")
+
+DEFINE_ERROR(Execution,     None,   WASIProcRaise,              "wasi proc raise")
+DEFINE_ERROR(Execution,     None,   EnvAbort,                   "env.abort")
+DEFINE_ERROR(Execution,     None,   CustomHostError,            "")
+
+DEFINE_ERROR(Unspecified,   None,   UnexpectedType,             "unexpected type")
+DEFINE_ERROR(Unspecified,   None,   MmapFailed,                 "failed to mmap(allocate execution memory)")
+
+#endif
+
+#ifdef DEFINE_DWASM_ERROR
+// If you want to add/delete/adjust new dwasm error, please ensure `FirstDWasmError` and `LastDWasmError` are correct.
+
+DEFINE_DWASM_ERROR(DWasmFuncBodyTooLarge,               Load,     10040,  40,     "WasmFuncBodyTooLarge")
+DEFINE_DWASM_ERROR(DWasmBlockNestedTooDeep,             Load,     10050,  50,     "WasmBlockNestedTooDeep")
+DEFINE_DWASM_ERROR(DWasmBlockTooLarge,                  Load,     10060,  60,     "WasmBlockTooLarge")
+DEFINE_DWASM_ERROR(DWasmLocalsTooMany,                  Load,     10070,  70,     "WasmLocalsTooMany")
+DEFINE_DWASM_ERROR(DWasmUnlinkedImportFunc,             Load,     10090,  90,     "UnlinkedImportFunc")
+DEFINE_DWASM_ERROR(DWasmModuleElementTooLarge,          Load,     10093,  93,     "WasmModuleElementTooLarge")
+DEFINE_DWASM_ERROR(DWasmModuleFormatInvalid,            Load,     10097,  97,     "WasmModuleFormatInvalid")
+DEFINE_DWASM_ERROR(DWasmModuleTooLargeInitMemoryPages,  Load,     10099,  99,     "WasmModuleTooLargeInitMemoryPages")
+DEFINE_DWASM_ERROR(DWasmModuleTooLarge,                 Load,     10100,  100,    "WasmModuleTooLarge")
+
+DEFINE_DWASM_ERROR(DWasmCallStackExceed,                Execution,      90001,  0,      "WasmCallStackExceed")
+DEFINE_DWASM_ERROR(DWasmIntegerOverflow,                Execution,      90002,  0,      "integer overflow true")
+DEFINE_DWASM_ERROR(DWasmIntegerDivideByZero,            Execution,      90003,  0,      "integer divide by zero")
+DEFINE_DWASM_ERROR(DWasmIntegerConvertion,              Execution,      90004,  0,      "IntegerConvertionError")
+DEFINE_DWASM_ERROR(DWasmOutOfBoundsMemory,              Execution,      90007,  0,      "OutOfBoundsMemory")
+DEFINE_DWASM_ERROR(DWasmTypeIdInvalid,                  Execution,      90009,  0,      "TypeIdInvalid")
+DEFINE_DWASM_ERROR(DWasmTableElementIndexInvalid,       Execution,      90010,  0,      "TableElementIndexInvalid")
+DEFINE_DWASM_ERROR(DWasmCallIndirectTargetUndefined,    Execution,      90011,  0,      "CallIndirectTargetUndefined")
+DEFINE_DWASM_ERROR(DWasmUnreachable,                    Execution,      90012,  0,      "Unreachable")
+DEFINE_DWASM_ERROR(DWasmOutOfGas,                       Execution,      90099,  0,      "OutOfGas")
+DEFINE_DWASM_ERROR(DWasmInvalidHostApiCallWasm,         Execution,      90100,  0,      "InvalidHostApiCallWasm")
+
+#endif

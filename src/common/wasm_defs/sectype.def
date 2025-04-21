@@ -1,0 +1,46 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+// ============================================================================
+// sectype.def
+//
+// define the types of all section and subsection
+//
+// ============================================================================
+
+#ifdef DEFINE_SECTION_TYPE
+
+//                  NAME        ID      TEXT
+DEFINE_SECTION_TYPE(CUSTOM,     0x00,   "custom")
+DEFINE_SECTION_TYPE(TYPE,       0x01,   "type")
+DEFINE_SECTION_TYPE(IMPORT,     0x02,   "import")
+DEFINE_SECTION_TYPE(FUNC,       0x03,   "func")
+DEFINE_SECTION_TYPE(TABLE,      0x04,   "table")
+DEFINE_SECTION_TYPE(MEMORY,     0x05,   "memory")
+DEFINE_SECTION_TYPE(GLOBAL,     0x06,   "global")
+DEFINE_SECTION_TYPE(EXPORT,     0x07,   "export")
+DEFINE_SECTION_TYPE(START,      0x08,   "start")
+DEFINE_SECTION_TYPE(ELEM,       0x09,   "elem")
+DEFINE_SECTION_TYPE(DATACOUNT,  0x0c,   "datacount")
+DEFINE_SECTION_TYPE(CODE,       0x0a,   "code")
+DEFINE_SECTION_TYPE(DATA,       0x0b,   "data")
+
+#endif
+
+
+#ifdef DEFINE_NAME_SUBSECTION_TYPE
+
+//                          NAME      ID
+DEFINE_NAME_SUBSECTION_TYPE(MODULE,   0)
+DEFINE_NAME_SUBSECTION_TYPE(FUNCTION, 1)
+DEFINE_NAME_SUBSECTION_TYPE(LOCAL,    2)
+DEFINE_NAME_SUBSECTION_TYPE(LABEL,    3)
+DEFINE_NAME_SUBSECTION_TYPE(TYPE,     4)
+DEFINE_NAME_SUBSECTION_TYPE(TABLE,    5)
+DEFINE_NAME_SUBSECTION_TYPE(MEMORY,   6)
+DEFINE_NAME_SUBSECTION_TYPE(GLOBAL,   7)
+DEFINE_NAME_SUBSECTION_TYPE(ELEMSEG,  8)
+DEFINE_NAME_SUBSECTION_TYPE(DATASEG,  9)
+DEFINE_NAME_SUBSECTION_TYPE(TAG,      10)
+
+#endif

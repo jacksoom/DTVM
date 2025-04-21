@@ -1,0 +1,35 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+#ifdef DEFINE_ARITH_FIELD
+
+DEFINE_ARITH_FIELD(checked_i8_add)
+DEFINE_ARITH_FIELD(checked_u8_add)
+DEFINE_ARITH_FIELD(checked_i16_add)
+DEFINE_ARITH_FIELD(checked_u16_add)
+DEFINE_ARITH_FIELD(checked_i32_add)
+DEFINE_ARITH_FIELD(checked_u32_add)
+DEFINE_ARITH_FIELD(checked_i64_add)
+DEFINE_ARITH_FIELD(checked_u64_add)
+DEFINE_ARITH_FIELD(checked_i128_add)
+DEFINE_ARITH_FIELD(checked_u128_add)
+DEFINE_ARITH_FIELD(checked_i8_sub)
+DEFINE_ARITH_FIELD(checked_u8_sub)
+DEFINE_ARITH_FIELD(checked_i16_sub)
+DEFINE_ARITH_FIELD(checked_u16_sub)
+DEFINE_ARITH_FIELD(checked_i32_sub)
+DEFINE_ARITH_FIELD(checked_u32_sub)
+DEFINE_ARITH_FIELD(checked_i64_sub)
+DEFINE_ARITH_FIELD(checked_u64_sub)
+DEFINE_ARITH_FIELD(checked_i128_sub)
+DEFINE_ARITH_FIELD(checked_u128_sub)
+DEFINE_ARITH_FIELD(checked_i8_mul)
+DEFINE_ARITH_FIELD(checked_u8_mul)
+DEFINE_ARITH_FIELD(checked_i16_mul)
+DEFINE_ARITH_FIELD(checked_u16_mul)
+DEFINE_ARITH_FIELD(checked_i32_mul)
+DEFINE_ARITH_FIELD(checked_u32_mul)
+DEFINE_ARITH_FIELD(checked_i64_mul)
+DEFINE_ARITH_FIELD(checked_u64_mul)
+
+#endif

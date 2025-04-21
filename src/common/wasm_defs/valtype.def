@@ -1,0 +1,30 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+// ============================================================================
+// valtype.def
+//
+// define all value type
+//
+// ============================================================================
+
+#ifdef DEFINE_VALUE_TYPE
+//                NAME      OPCODE  TEXT
+DEFINE_VALUE_TYPE(I32,      0x7f,   "i32")
+DEFINE_VALUE_TYPE(I64,      0x7e,   "i64")
+DEFINE_VALUE_TYPE(F32,      0x7d,   "f32")
+DEFINE_VALUE_TYPE(F64,      0x7c,   "f64")
+DEFINE_VALUE_TYPE(V128,     0x7b,   "v128")
+#endif
+
+
+#ifdef DEFINE_BLOCK_TYPE
+//                NAME      OPCODE  TEXT
+DEFINE_BLOCK_TYPE(VOID,     0x40,   "void")
+#endif
+
+
+#ifdef DEFINE_REF_TYPE
+//                NAME      OPCODE  TEXT
+DEFINE_REF_TYPE(FUNCREF,    0x70,	  "funcref")
+#endif

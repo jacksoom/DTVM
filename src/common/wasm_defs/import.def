@@ -1,0 +1,18 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+// ============================================================================
+// iimport.def
+//
+// define all import kind
+//
+// ============================================================================
+
+#ifdef DEFINE_IMPORT_KIND
+
+DEFINE_IMPORT_KIND(FUNC,	0x0,	"func")
+DEFINE_IMPORT_KIND(TABLE,	0x1,	"table")
+DEFINE_IMPORT_KIND(MEMORY,	0x2,	"memory")
+DEFINE_IMPORT_KIND(GLOBAL,	0x3,	"global")
+
+#endif

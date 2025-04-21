@@ -1,0 +1,61 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+#ifdef DEF_CONST_STRING
+
+DEF_CONST_STRING(null, "null")
+DEF_CONST_STRING(env, "env")
+DEF_CONST_STRING(name, "name")
+DEF_CONST_STRING(dylink, "dylink")
+DEF_CONST_STRING(GOT_func, "GOT.func")
+DEF_CONST_STRING(wasi_unstable, "wasi_unstable")
+DEF_CONST_STRING(wasi_snapshot_preview1, "wasi_snapshot_preview1")
+DEF_CONST_STRING(spectest, "spectest")
+DEF_CONST_STRING(table, "table")
+DEF_CONST_STRING(memory, "memory")
+DEF_CONST_STRING(var_stack_pointer, "__stack_pointer")
+DEF_CONST_STRING(var_user_stack_pointer, "__user_stack_pointer")
+DEF_CONST_STRING(var_memory_base, "__memory_base")
+DEF_CONST_STRING(var_table_base, "__table_base")
+DEF_CONST_STRING(var_data_end, "__data_end")
+DEF_CONST_STRING(func_gas, "__instrumented_use_gas")
+
+// Native Module related
+DEF_CONST_STRING(init_ctx, "vnmi_init_ctx")
+DEF_CONST_STRING(destroy_ctx, "vnmi_destroy_ctx")
+
+
+#ifdef ZEN_ENABLE_CHECKED_ARITHMETIC
+
+DEF_CONST_STRING(checked_i8_add, "checked_i8_add")
+DEF_CONST_STRING(checked_u8_add, "checked_u8_add")
+DEF_CONST_STRING(checked_i16_add, "checked_i16_add")
+DEF_CONST_STRING(checked_u16_add, "checked_u16_add")
+DEF_CONST_STRING(checked_i32_add, "checked_i32_add")
+DEF_CONST_STRING(checked_u32_add, "checked_u32_add")
+DEF_CONST_STRING(checked_i64_add, "checked_i64_add")
+DEF_CONST_STRING(checked_u64_add, "checked_u64_add")
+DEF_CONST_STRING(checked_i128_add, "checked_i128_add")
+DEF_CONST_STRING(checked_u128_add, "checked_u128_add")
+DEF_CONST_STRING(checked_i8_sub, "checked_i8_sub")
+DEF_CONST_STRING(checked_u8_sub, "checked_u8_sub")
+DEF_CONST_STRING(checked_i16_sub, "checked_i16_sub")
+DEF_CONST_STRING(checked_u16_sub, "checked_u16_sub")
+DEF_CONST_STRING(checked_i32_sub, "checked_i32_sub")
+DEF_CONST_STRING(checked_u32_sub, "checked_u32_sub")
+DEF_CONST_STRING(checked_i64_sub, "checked_i64_sub")
+DEF_CONST_STRING(checked_u64_sub, "checked_u64_sub")
+DEF_CONST_STRING(checked_i128_sub, "checked_i128_sub")
+DEF_CONST_STRING(checked_u128_sub, "checked_u128_sub")
+DEF_CONST_STRING(checked_i8_mul, "checked_i8_mul")
+DEF_CONST_STRING(checked_u8_mul, "checked_u8_mul")
+DEF_CONST_STRING(checked_i16_mul, "checked_i16_mul")
+DEF_CONST_STRING(checked_u16_mul, "checked_u16_mul")
+DEF_CONST_STRING(checked_i32_mul, "checked_i32_mul")
+DEF_CONST_STRING(checked_u32_mul, "checked_u32_mul")
+DEF_CONST_STRING(checked_i64_mul, "checked_i64_mul")
+DEF_CONST_STRING(checked_u64_mul, "checked_u64_mul")
+
+#endif // ZEN_ENABLE_CHECKED_ARITHMETIC
+
+#endif // DEF_CONST_STRING
