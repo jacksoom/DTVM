@@ -1,0 +1,17 @@
+--- MODULE.bazel
++++ MODULE.bazel
+@@ -0,0 +1 @@
++module(name = "com_grail_bazel_compdb")
+
+--- aspects.bzl
++++ aspects.bzl
+@@ -66,7 +66,7 @@ _all_rules = _cc_rules + _objc_rules
+ def _compilation_db_json(compilation_db):
+     # Return a JSON string for the compilation db entries.
+ 
+-    entries = [entry.to_json() for entry in compilation_db]
++    entries = [json.encode(entry) for entry in compilation_db]
+     return ",\n".join(entries)
+ 
+ def _is_cpp_target(srcs):
+

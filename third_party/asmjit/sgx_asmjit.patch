@@ -1,0 +1,29 @@
+diff --git a/src/asmjit/core/cpuinfo.cpp b/src/asmjit/core/cpuinfo.cpp
+index 9f33112..9495161 100644
+--- a/src/asmjit/core/cpuinfo.cpp
++++ b/src/asmjit/core/cpuinfo.cpp
+@@ -43,8 +43,9 @@ static inline uint32_t detectHWThreadCount() noexcept {
+ }
+ #elif defined(_SC_NPROCESSORS_ONLN)
+ static inline uint32_t detectHWThreadCount() noexcept {
+-  long res = ::sysconf(_SC_NPROCESSORS_ONLN);
+-  return res <= 0 ? uint32_t(1) : uint32_t(res);
++  // long res = ::sysconf(_SC_NPROCESSORS_ONLN);
++  // return res <= 0 ? uint32_t(1) : uint32_t(res);
++  return 1;
+ }
+ #else
+ static inline uint32_t detectHWThreadCount() noexcept {
+diff --git a/src/asmjit/core/globals.cpp b/src/asmjit/core/globals.cpp
+index 2bbd0c0..be438bf 100644
+--- a/src/asmjit/core/globals.cpp
++++ b/src/asmjit/core/globals.cpp
+@@ -111,7 +111,7 @@ ASMJIT_FAVOR_SIZE const char* DebugUtils::errorAsString(Error err) noexcept {
+ ASMJIT_FAVOR_SIZE void DebugUtils::debugOutput(const char* str) noexcept {
+ #if defined(_WIN32)
+   ::OutputDebugStringA(str);
+-#else
++#elif !defined(ASMJIT_NO_LOGGING)
+   ::fputs(str, stderr);
+ #endif
+ }
