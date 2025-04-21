@@ -1,0 +1,15 @@
+ZetaEngine is a WebAssembly (WASM) runtime project.
+Copyright (C) 2021-2025 Ant Group Co., Ltd. All Rights Reserved.
+Licensed under the Apache License, Version 2.0
+
+This product contains various third-party components under other open source licenses.
+This section summarizes those components and their licenses.
+
+1. llvm-project
+Licensed under the Apache License, Version 2.0 with LLVM exception.
+
+2. wasm-micro-runtime
+Licensed under the Apache License, Version 2.0 with LLVM exception.
+
+3. wasmtime
+Licensed under the Apache License, Version 2.0 with LLVM exception.
