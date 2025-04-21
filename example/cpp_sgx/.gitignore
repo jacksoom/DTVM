@@ -1,0 +1,8 @@
+.config_SIM_DEBUG_x64
+enclave.so
+enclave.signed.so
+libzetaengine.a
+libasmjit.a
+*.o
+*.log
+/zen_sgx

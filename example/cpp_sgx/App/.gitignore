@@ -1,0 +1,5 @@
+Edger8rSyntax/
+TrustedLibrary/
+*.c
+*.h
+*.o

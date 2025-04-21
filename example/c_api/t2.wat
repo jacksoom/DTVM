@@ -1,0 +1,10 @@
+(module
+  (import "env" "print_str" (func $print_str (param i32)))
+  (memory 1)
+  (func $entry (result i32)
+    (call $print_str (i32.const 20))
+    (i32.const 100)
+  )
+  (data (i32.const 20) "Hello, World!\n\00")
+  (export "entry" (func $entry))
+)
