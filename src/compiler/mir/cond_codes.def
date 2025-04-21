@@ -1,0 +1,32 @@
+#ifndef CONDCODE
+#define CONDCODE(TEXT, PREDICATE, VALUE)
+#endif
+
+// Opcode                            U L G E    Intuitive operation
+CONDCODE(ffalse, FCMP_FALSE, 0) ///< 0 0 0 0    Always false (always folded)
+CONDCODE(foeq, FCMP_OEQ, 1)     ///< 0 0 0 1    True if ordered and equal
+CONDCODE(fogt, FCMP_OGT, 2)     ///< 0 0 1 0    True if ordered and greater than
+CONDCODE(foge, FCMP_OGE, 3)     ///< 0 0 1 1    True if ordered and greater than or equal
+CONDCODE(folt, FCMP_OLT, 4)     ///< 0 1 0 0    True if ordered and less than
+CONDCODE(fole, FCMP_OLE, 5)     ///< 0 1 0 1    True if ordered and less than or equal
+CONDCODE(fone, FCMP_ONE, 6)     ///< 0 1 1 0    True if ordered and operands are unequal
+CONDCODE(ford, FCMP_ORD, 7)     ///< 0 1 1 1    True if ordered (no nans)
+CONDCODE(funo, FCMP_UNO, 8)     ///< 1 0 0 0    True if unordered: isnan(X) | isnan(Y)
+CONDCODE(fueq, FCMP_UEQ, 9)     ///< 1 0 0 1    True if unordered or equal
+CONDCODE(fugt, FCMP_UGT, 10)    ///< 1 0 1 0    True if unordered or greater than
+CONDCODE(fuge, FCMP_UGE, 11)    ///< 1 0 1 1    True if unordered, greater than, or equal
+CONDCODE(fult, FCMP_ULT, 12)    ///< 1 1 0 0    True if unordered or less than
+CONDCODE(fule, FCMP_ULE, 13)    ///< 1 1 0 1    True if unordered, less than, or equal
+CONDCODE(fune, FCMP_UNE, 14)    ///< 1 1 1 0    True if unordered or not equal
+CONDCODE(ftrue, FCMP_TRUE, 15)  ///< 1 1 1 1    Always true (always folded)
+
+CONDCODE(ieq, ICMP_EQ, 32)      ///< equal
+CONDCODE(ine, ICMP_NE, 33)      ///< not equal
+CONDCODE(iugt, ICMP_UGT, 34)    ///< unsigned greater than
+CONDCODE(iuge, ICMP_UGE, 35)    ///< unsigned greater or equal
+CONDCODE(iult, ICMP_ULT, 36)    ///< unsigned less than
+CONDCODE(iule, ICMP_ULE, 37)    ///< unsigned less or equal
+CONDCODE(isgt, ICMP_SGT, 38)    ///< signed greater than
+CONDCODE(isge, ICMP_SGE, 39)    ///< signed greater or equal
+CONDCODE(islt, ICMP_SLT, 40)    ///< signed less than
+CONDCODE(isle, ICMP_SLE, 41)    ///< signed less or equal

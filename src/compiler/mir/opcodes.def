@@ -1,0 +1,76 @@
+#ifndef OPCODE
+#define OPCODE(X)
+#endif
+
+OPCODE(clz)                         // OP_UNARY_EXPR_START, OP_START
+OPCODE(ctz)
+OPCODE(popcnt)
+OPCODE(fpabs)
+OPCODE(fpneg)
+OPCODE(fpsqrt)
+OPCODE(fpround_ceil)
+OPCODE(fpround_floor)
+OPCODE(fpround_trunc)
+OPCODE(fpround_nearest)             // OP_UNARY_EXPR_END
+
+OPCODE(add)                         // OP_BIN_EXPR_START
+OPCODE(sub)
+OPCODE(mul)
+OPCODE(sdiv)
+OPCODE(udiv)
+OPCODE(srem)
+OPCODE(urem)
+OPCODE(and)
+OPCODE(or)
+OPCODE(xor)
+OPCODE(shl)
+OPCODE(sshr)
+OPCODE(ushr)
+OPCODE(rotl)
+OPCODE(rotr)
+OPCODE(fpdiv)
+OPCODE(fpmin)
+OPCODE(fpmax)
+OPCODE(fpcopysign)
+OPCODE(wasm_sadd_overflow)          // OP_OVERFLOW_BIN_EXPR_START
+OPCODE(wasm_uadd_overflow)
+OPCODE(wasm_ssub_overflow)
+OPCODE(wasm_usub_overflow)
+OPCODE(wasm_smul_overflow)
+OPCODE(wasm_umul_overflow)          // OP_OVERFLOW_BIN_EXPR_END, OP_BIN_EXPR_END
+
+OPCODE(inttoptr)                    // OP_CONV_EXPR_START
+OPCODE(ptrtoint)
+OPCODE(trunc)
+OPCODE(sext)
+OPCODE(uext)
+OPCODE(fptrunc)
+OPCODE(fpext)
+OPCODE(sitofp)
+OPCODE(uitofp)
+OPCODE(bitcast)
+OPCODE(wasm_fptosi)
+OPCODE(wasm_fptoui)                 // OP_CONV_EXPR_END
+
+OPCODE(dread)                       // OP_OTHER_EXPR_START
+OPCODE(const)
+OPCODE(cmp)
+OPCODE(select)
+OPCODE(load)
+OPCODE(wasm_sadd128_overflow)
+OPCODE(wasm_uadd128_overflow)
+OPCODE(wasm_ssub128_overflow)
+OPCODE(wasm_usub128_overflow)       // OP_OTHER_EXPR_END
+
+OPCODE(br)                          // OP_CTRL_STMT_START
+OPCODE(br_if)
+OPCODE(switch)
+OPCODE(call)
+OPCODE(icall)
+OPCODE(return)                      // OP_CTRL_STMT_END
+
+OPCODE(dassign)                     // OP_OTHER_STMT_START
+OPCODE(store)
+OPCODE(wasm_check_memory_access)
+OPCODE(wasm_visit_stack_guard)
+OPCODE(wasm_check_stack_boundary)   // OP_OTHER_STMT_END, OP_END

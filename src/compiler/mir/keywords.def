@@ -1,0 +1,6 @@
+#ifndef KEYWORD
+#define KEYWORD(X)
+#endif // KEYWORD
+
+KEYWORD(var)
+KEYWORD(func)
