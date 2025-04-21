@@ -1,0 +1,5 @@
+separate_arguments(SPEC_TESTS_ARGS NATIVE_COMMAND $ENV{SPEC_TESTS_ARGS})
+execute_process(COMMAND ${TEST_EXECUTABLE} ${SPEC_TESTS_ARGS} RESULT_VARIABLE RESULT)
+if(NOT "${RESULT}" STREQUAL "0")
+    message(FATAL_ERROR "Test failed with return value '${RESULT}'")
+endif()
