@@ -1,0 +1,106 @@
+;; This test case file is designed to test situations where the value retrieved
+;; from a local.get/global.get/load/memory.size instruction in multipass JIT
+;; overlaps with its corresponding set instructions(local.set/global.set/store/memory.grow)
+;; within the operand stack's survival range.
+
+(module
+  (func (export "add_local_get_across_set") (param $x i32) (param $y i32) (result i32) (local $l1 i32) (local $l2 i32)
+    (local.set $l1 (local.get $x))
+    (local.set $l2 (local.get $y))
+    (local.get $l1)
+    (local.set $l1 (i32.const 0x0f0f0f0f))
+    (local.get $l2)
+    (local.set $l2 (i32.const 0xf0f0f0f0))
+    (i32.add)
+  )
+)
+
+(assert_return (invoke "add_local_get_across_set" (i32.const 1) (i32.const 1)) (i32.const 2))
+(assert_return (invoke "add_local_get_across_set" (i32.const 1) (i32.const 0)) (i32.const 1))
+(assert_return (invoke "add_local_get_across_set" (i32.const -1) (i32.const -1)) (i32.const -2))
+(assert_return (invoke "add_local_get_across_set" (i32.const -1) (i32.const 1)) (i32.const 0))
+(assert_return (invoke "add_local_get_across_set" (i32.const 0x7fffffff) (i32.const 1)) (i32.const 0x80000000))
+(assert_return (invoke "add_local_get_across_set" (i32.const 0x80000000) (i32.const -1)) (i32.const 0x7fffffff))
+(assert_return (invoke "add_local_get_across_set" (i32.const 0x80000000) (i32.const 0x80000000)) (i32.const 0))
+(assert_return (invoke "add_local_get_across_set" (i32.const 0x3fffffff) (i32.const 1)) (i32.const 0x40000000))
+(assert_return (invoke "add_local_get_across_set" (i32.const 0x12345678) (i32.const 0x87654321)) (i32.const 0x99999999))
+
+(module
+  (global $g1 (mut i32) (i32.const 0))
+  (global $g2 (mut i32) (i32.const 0))
+  (func (export "add_global_get_across_set") (param $x i32) (param $y i32) (result i32)
+    (global.set $g1 (local.get $x))
+    (global.set $g2 (local.get $y))
+    (global.get $g1)
+    (global.set $g1 (i32.const 0x0f0f0f0f))
+    (global.get $g2)
+    (global.set $g2 (i32.const 0xf0f0f0f0))
+    (i32.add)
+  )
+)
+
+(assert_return (invoke "add_global_get_across_set" (i32.const 1) (i32.const 1)) (i32.const 2))
+(assert_return (invoke "add_global_get_across_set" (i32.const 1) (i32.const 0)) (i32.const 1))
+(assert_return (invoke "add_global_get_across_set" (i32.const -1) (i32.const -1)) (i32.const -2))
+(assert_return (invoke "add_global_get_across_set" (i32.const -1) (i32.const 1)) (i32.const 0))
+(assert_return (invoke "add_global_get_across_set" (i32.const 0x7fffffff) (i32.const 1)) (i32.const 0x80000000))
+(assert_return (invoke "add_global_get_across_set" (i32.const 0x80000000) (i32.const -1)) (i32.const 0x7fffffff))
+(assert_return (invoke "add_global_get_across_set" (i32.const 0x80000000) (i32.const 0x80000000)) (i32.const 0))
+(assert_return (invoke "add_global_get_across_set" (i32.const 0x3fffffff) (i32.const 1)) (i32.const 0x40000000))
+(assert_return (invoke "add_global_get_across_set" (i32.const 0x12345678) (i32.const 0x87654321)) (i32.const 0x99999999))
+
+(module
+  (memory 1)
+  (func (export "add_memory_load_across_store") (param $x i32) (param $y i32) (result i32)
+    (i32.store (i32.const 0) (local.get $x))
+    (i32.store (i32.const 0x100) (local.get $y))
+    (i32.load (i32.const 0))
+    (i32.store (i32.const 0) (i32.const 0x0f0f0f0f))
+    (i32.load (i32.const 0x100))
+    (i32.store (i32.const 0x100) (i32.const 0xf0f0f0f0))
+    (i32.add)
+  )
+)
+
+(assert_return (invoke "add_memory_load_across_store" (i32.const 1) (i32.const 1)) (i32.const 2))
+(assert_return (invoke "add_memory_load_across_store" (i32.const 1) (i32.const 0)) (i32.const 1))
+(assert_return (invoke "add_memory_load_across_store" (i32.const -1) (i32.const -1)) (i32.const -2))
+(assert_return (invoke "add_memory_load_across_store" (i32.const -1) (i32.const 1)) (i32.const 0))
+(assert_return (invoke "add_memory_load_across_store" (i32.const 10) (i32.const 20)) (i32.const 30))
+(assert_return (invoke "add_memory_load_across_store" (i32.const 114514) (i32.const 514114)) (i32.const 628628))
+(assert_return (invoke "add_memory_load_across_store" (i32.const 0x0000ffff) (i32.const 0xffff0000)) (i32.const 0xffffffff))
+
+(module
+  (memory 0)
+  (func (export "memory_size_across_grow") (param $delta i32) (result i32)
+    (memory.size)
+    (drop (memory.grow (local.get $delta)))
+  )
+)
+
+(assert_return (invoke "memory_size_across_grow" (i32.const 1)) (i32.const 0))
+(assert_return (invoke "memory_size_across_grow" (i32.const 2)) (i32.const 1))
+(assert_return (invoke "memory_size_across_grow" (i32.const 3)) (i32.const 3))
+(assert_return (invoke "memory_size_across_grow" (i32.const 1)) (i32.const 6))
+
+(module
+  (func (export "select_when_condition_low_bits_empty") (param $lhs i32) (param $rhs i32) (param $cond i32) (result i32)
+   (select (local.get $lhs) (local.get $rhs) (local.get $cond))
+  )
+)
+
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 1) (i32.const 2) (i32.const 0x100)) (i32.const 1))
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 1) (i32.const 2) (i32.const 0x10000)) (i32.const 1))
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 2) (i32.const 1) (i32.const 0x100)) (i32.const 2))
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 2) (i32.const 1) (i32.const 0x10000)) (i32.const 2))
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 0x0f0f0f0f) (i32.const 0xf0f0f0f0) (i32.const 0x100)) (i32.const 0x0f0f0f0f))
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 0x0f0f0f0f) (i32.const 0xf0f0f0f0) (i32.const 0x10000)) (i32.const 0x0f0f0f0f))
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 0xf0f0f0f0) (i32.const 0x0f0f0f0f) (i32.const 0x100)) (i32.const 0xf0f0f0f0))
+(assert_return (invoke "select_when_condition_low_bits_empty" (i32.const 0xf0f0f0f0) (i32.const 0x0f0f0f0f) (i32.const 0x10000)) (i32.const 0xf0f0f0f0))
+
+(module
+  (func (export "div_then_drop")
+    (drop (i32.div_s (i32.const 2) (i32.const 0)))
+    (unreachable))
+)
+(assert_trap (invoke "div_then_drop") "integer divide by zero")
