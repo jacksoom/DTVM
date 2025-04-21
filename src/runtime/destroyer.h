@@ -1,0 +1,36 @@
+// Copyright (C) 2021-2023 Ant Group Co., Ltd. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+#ifndef ZEN_RUNTIME_DESTROYER_H
+#define ZEN_RUNTIME_DESTROYER_H
+
+#include "common/mem_pool.h"
+#include <memory>
+
+namespace zen::runtime {
+
+class CodeHolder;
+class HostModule;
+class Module;
+class Instance;
+class Isolation;
+class SymbolWrapper;
+
+class RuntimeObjectDestroyer {
+public:
+  template <typename T> void operator()(T *Ptr);
+  ~RuntimeObjectDestroyer() = default;
+};
+
+template <typename T>
+using RuntimeObjectUniquePtr = std::unique_ptr<T, RuntimeObjectDestroyer>;
+using CodeHolderUniquePtr = RuntimeObjectUniquePtr<CodeHolder>;
+using HostModuleUniquePtr = RuntimeObjectUniquePtr<HostModule>;
+using ModuleUniquePtr = RuntimeObjectUniquePtr<Module>;
+using InstanceUniquePtr = RuntimeObjectUniquePtr<Instance>;
+using IsolationUniquePtr = RuntimeObjectUniquePtr<Isolation>;
+using SymbolWrapperUniquePtr = RuntimeObjectUniquePtr<SymbolWrapper>;
+
+} // namespace zen::runtime
+
+#endif // ZEN_RUNTIME_DESTROYER_H
