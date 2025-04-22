@@ -162,7 +162,7 @@ Refer to [docs/user-guide.md](docs/user-guide.md) for command-line arguments.
 
 ## Contributing
 
-We welcome contributions to DTVM! Before contributing, please read our [Contributing Guidelines](CONTRIBUTING.md) and sign our [Contributor License Agreement (CLA)](CLA.md). 
+We welcome contributions to DTVM! Before contributing, please read our [Contributing Guidelines](CONTRIBUTING.md). 
 
 <a name="Ry0Ak"></a>
 ## Test

@@ -14,13 +14,7 @@ Note:
 
     We recommend that link the issue with the PR in the following question.
 
-3. By submitting this PR, you agree to the DTVM Contributor License Agreement (CLA).
-   Please read the [CLA document](../CLA.md) before submitting your contributions.
 -->
-
-#### 0. Contributor License Agreement (CLA)
-
-- [ ] I have read and agree to the [DTVM Contributor License Agreement (CLA)](../CLA.md)
 
 #### 1. Does this PR affect any open issues?(Y/N) and add issue references (e.g. "fix #123", "re #123".):
 
