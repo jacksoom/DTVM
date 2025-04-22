@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
 RUN sed -i s/security.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
-RUN apt update -y && apt install -y --no-install-recommends build-essential ca-certificates clang-format-15 clang-tidy-15 cmake curl git libzstd-dev ninja-build python3 python3-pip ssh sudo wabt wget zlib1g-dev wget git-lfs zlib1g-dev wget libffi-dev libncurses5-dev libncursesw5-dev libxml2-dev binaryen && rm -rf /var/lib/apt/lists/*
+RUN apt update -y && apt install -y --no-install-recommends build-essential ca-certificates clang-format-15 clang-tidy-15 cmake curl git libzstd-dev ninja-build python3 python3-pip ssh sudo wabt wget zlib1g-dev wget git-lfs zlib1g-dev wget libffi-dev libncurses5-dev libncursesw5-dev libxml2-dev binaryen unzip && rm -rf /var/lib/apt/lists/*
 RUN pip3 install cmake-format lit --no-cache-dir
 RUN cd /usr/bin/ && ln -s python3 python && ln -s clang-format-15 clang-format && ln -s clang-tidy-15 clang-tidy && ln -s run-clang-tidy-15 run-clang-tidy
 RUN useradd -m -u 500 -U -G sudo -s /bin/bash admin &&     passwd -d admin
@@ -27,7 +27,7 @@ COPY install_llvm15.sh /opt/install_llvm15.sh
 RUN chmod +x /opt/install_llvm15.sh
 
 RUN echo "export PATH=/opt/llvm15/bin:/opt:\$PATH" >> ~/.bash_profile
-RUN echo "export LLVM_SYS_150_PREFIX=/opt/llvm16" >> ~/.bash_profile
+RUN echo "export LLVM_SYS_150_PREFIX=/opt/llvm15" >> ~/.bash_profile
 ENV PATH=/opt/llvm15/bin:/opt:$PATH
 ENV LLVM_SYS_150_PREFIX=/opt/llvm15
 

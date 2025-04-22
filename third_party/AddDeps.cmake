@@ -24,12 +24,15 @@ if(ZEN_ENABLE_SINGLEPASS_JIT)
   endif()
   FetchContent_Declare(
     asmjit
-    GIT_REPOSITORY
-      https://github.com/asmjit/asmjit.git
-    GIT_COMMIT 3577608cab0bc509f856ebf6e41b2f9d9f71acc4
-    GIT_SHALLOW TRUE
+    URL https://github.com/asmjit/asmjit/archive/3577608cab0bc509f856ebf6e41b2f9d9f71acc4.zip
+    URL_HASH
+      SHA256=4845eb9d9e6e8da34694c451a00bc3a4c02fe1f60e12dbde9f09ae5ecb690528
     PATCH_COMMAND ${PATCH_CMD}
   )
+  # FetchContent_Declare( asmjit GIT_REPOSITORY
+  # https://github.com/asmjit/asmjit.git GIT_COMMIT
+  # 3577608cab0bc509f856ebf6e41b2f9d9f71acc4 GIT_SHALLOW TRUE PATCH_COMMAND
+  # ${PATCH_CMD} )
   FetchContent_MakeAvailable(asmjit)
 endif()
 
@@ -46,8 +49,7 @@ endif()
 
 FetchContent_Declare(
   CLI11
-  GIT_REPOSITORY
-    https://github.com/CLIUtils/CLI11.git
+  GIT_REPOSITORY https://github.com/CLIUtils/CLI11.git
   GIT_TAG v2.3.2
   GIT_SHALLOW TRUE
 )
@@ -63,8 +65,7 @@ FetchContent_MakeAvailable(CLI11)
 if(ZEN_ENABLE_SPEC_TEST)
   FetchContent_Declare(
     googletest
-    GIT_REPOSITORY
-      https://github.com/google/googletest.git
+    GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG release-1.11.0
     GIT_SHALLOW TRUE
   )
@@ -74,8 +75,7 @@ if(ZEN_ENABLE_SPEC_TEST)
 
   FetchContent_Declare(
     rapidjson
-    GIT_REPOSITORY
-    https://github.com/Tencent/rapidjson.git
+    GIT_REPOSITORY https://github.com/Tencent/rapidjson.git
     GIT_COMMIT 06d58b9e848c650114556a23294d0b6440078c61
     GIT_SHALLOW TRUE
   )
