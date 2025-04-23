@@ -3,67 +3,64 @@ DTVM
 
 DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual machine that addresses critical performance, determinism, and ecosystem compatibility challenges in blockchain networks. Building upon WebAssembly (Wasm) while maintaining full Ethereum Virtual Machine (EVM) ABI compatibility.
 
-[Read the DTVM Research Paper](./resources/DTVM_paper.pdf)
+[Read the DTVM Technical Paper](./resources/DTVM_paper.pdf)
 
 ![DTVM Stack Overview](./resources/dtvm_stack_overview.png)
 
 DTVM introduces:
 
 1. **Deterministic JIT Execution Engine with Enhanced Performance**
-
-* Deterministic Middle Intermediate Representation (dMIR), a blockchain-specific intermediate representation that ensures deterministic execution guarantees
-* Modular adaptation layers translating diverse instruction sets (now Wasm, EVM and RISC-V in the future) into unified dMIR
-* Hybrid lazy-JIT compilation engine with dynamic optimization levels (O0~O2), thereby optimizing both compilation efficiency and execution speed
+   * Implements a blockchain-specific Deterministic Middle Intermediate Representation (dMIR) that ensures deterministic execution guarantees
+   * Provides modular adaptation layers translating diverse instruction sets (Wasm, EVM, and RISC-V in the future) into unified dMIR
+   * Features a hybrid lazy-JIT compilation engine with dynamic optimization levels (O0~O2), optimizing both compilation efficiency and execution speed
 
 2. **EVM ABI Compatibility and Multi-Language Ecosystem Support**
-
-* Compatibility with the latest Solidity 0.8.x specification while expanding support to six frontend programming languages (e.g. Solidity, C/C++, Rust, Java, Golang, and AssemblyScript). 
-* Cross-language contract interaction capabilities
-* Ethereum ABI compatibility for seamless integration with existing Ethereum ecosystem
-* Web3 SDK support for contract deployment and interaction
+   * Maintains compatibility with the latest Solidity 0.8.x specification while supporting six frontend programming languages (Solidity, C/C++, Rust, Java, Golang, and AssemblyScript)
+   * Enables cross-language contract interaction capabilities
+   * Offers Ethereum ABI compatibility for seamless integration with existing Ethereum ecosystem
+   * Provides Web3 SDK support for contract deployment and interaction
 
 3. **TEE-Native Security and Hardware-Optimized Efficiency**
+   * Delivers high portability for application-level TEEs such as Intel SGX through a minimized Trusted Computing Base (TCB)
+   * Features small codebase and binary library size compared to competitive Wasm implementations, minimizing potential attack surfaces while maintaining security and efficiency
+   * Utilizes modern processor registers and exception handling mechanisms to address specialized requirements such as gas metering and boundary checks in JIT compilation
 
-* For application-level TEEs such as Intel SGX, the DTVM Stack offers high portability through a minimized Trusted Computing Base (TCB).
-* Small codebase and binary library size compared to competitive Wasm implementations, thereby minimizing potential attack surfaces while maintaining security and efficiency. 
-* Modern processor registers and exception handling mechanisms to address specialized requirements such as gas metering and boundary checks in JIT compilation.
-
-4. **AI-Powered Smart Contract Development and Auditing**
-
-* Integrated code generation, security auditing, and repair workflows
-* 80%+ vulnerability detection accuracy and 85%+ automated repair success rates
-* Retrieval-augmented generation for smart contract lifecycle automation
-* Enhanced development productivity and security
+4. **[SmartCogent](https://docs.zan.top/docs/quickstart-guide-smartcogent): AI-Powered Smart Contract Development and Auditing**
+   * Integrates code generation, security auditing, and repair workflows
+   * Achieves 80%+ vulnerability detection accuracy and 85%+ automated repair success rates
+   * Implements retrieval-augmented generation for smart contract lifecycle automation
+   * Enhances development productivity and security
 
 ![SmartCogent Overflow](./resources/smart_cogent_overflow.png)
 
-ZetaEngine stands as the core WebAssembly (WASM) runtime project within the DTVM ecosystem, licensed under the Apache License (Version 2.0) with LLVM exceptions.
+The DTVM Engine introduces a Lazy-JIT compilation framework(code name is **ZetaEngine**) with Wasm runtime environment.
 
-This powerful engine is designed to bring high-performance and efficient execution environment for WebAssembly applications.
-
-As a WebAssembly (WASM) runtime project, this powerful engine is specifically tailored for blockchain smart contract environments, providing a high-performance, secure, and cross-platform deterministic execution runtime. It offers a comprehensive suite of blockchain-specific design features, addressing the unique challenges of distributed computing and smart contract execution. The engine delivers exceptional performance, robust security mechanisms, and guaranteed cross-platform consistency critical for blockchain and decentralized application (dApp) ecosystems.
+**ZetaEngine** is specifically tailored for blockchain smart contract environments, providing a high-performance, secure, and cross-platform deterministic execution runtime. It offers a comprehensive suite of blockchain-specific design features, addressing the unique challenges of distributed computing and smart contract execution. The engine delivers exceptional performance, robust security mechanisms, and guaranteed cross-platform consistency critical for blockchain and decentralized application (dApp) ecosystems.
 
 ![DTVM Compile Framework](./resources/dtvm_lazy_jit.png)
 
-This product incorporates various third-party components, each under their respective open source licenses. For a comprehensive list of these components and the associated license information, please refer to the `NOTICE` file.
-
 # Introduction
-Currently, the virtual machine supports `multipass` mode(including `FLAT` & `FLAS` mode), `singlepass` mode, and `interpreter` mode.
+
+ZetaEngine currently supports three execution modes: `lazy-jit` mode (also known as `multipass`, which includes `FLAT` and `FLAS` modes), `singlepass` mode, and `interpreter` mode.
 
 **FLAT Mode** : Function Level fAst Transpile mode
 
 **FLAS Mode**: Function Level Adaptive hot-Switching mode
 
-ZetaEngine offers C++, C, and Rust APIs for use as a library, or as a command-line tool for WASM execution. And you can use it in SGX enclaves.
+ZetaEngine provides comprehensive programming interfaces in C++, C, and Rust, enabling seamless integration as both a library and a command-line tool for Wasm execution. 
+Additionally, it offers native support for Intel SGX enclaves, ensuring secure execution in trusted environments.
 
 <a name="teEUv"></a>
 ## Build
 <a name="fj3o5"></a>
 
-### Multipass JIT
-`multipass JIT` mode relies on `LLVM` 15. You can install llvm-15 by download pre-built llvm 15 from github.
+### Lazy JIT
 
-Then, build ZetaEngine with `multipass JIT` mode:
+The Lazy-JIT compilation framework (ZetaEngine) incorporates two execution modes: FLAT mode for rapid execution and FLAS mode for optimized performance. These modes can seamlessly switch between each other when Lazy-JIT is enabled.
+
+`Lazy JIT` relies on `LLVM` 15 for code generation. You can install llvm-15 by download pre-built llvm 15 from github.
+
+Then, build ZetaEngine with `Lazy JIT` (multipass JIT) mode:
 
 ```cpp
 cmake -B build -DCMAKE_BUILD_TYPE=Debug -DZEN_ENABLE_MULTIPASS_JIT=ON -DLLVM_DIR=<llvm-path>/lib/cmake/llvm -DLLVM_SYS_150_PREFIX=<llvm-path>
@@ -72,11 +69,13 @@ cmake --build build
 
 Consult: [docs/user-guide.md](docs/user-guide.md) for other CMake options.
 
-Note: multipass JIT currently only supports the x86-64 target.
+Note: Lazy JIT currently only supports the x86-64 target.
 
-When the multipass lazy mode is enabled (via the `--enable-multipass-lazy` CLI option), the engine automatically switches between `FLAS`  and `FLAT` modes.
+### Other Modes
 
-### Singlepass JIT
+DTVM also provides a standalone singlepass JIT and an interpreter by default. User can try this simple version via below instructions
+
+***Singlepass JIT***
 
 Singlepass JIT mode offers a lightweight alternative that doesn't require LLVM installation. It provides cross-platform compatibility, supporting both x86 and ARM64 architectures for flexible deployment options.
 
@@ -89,7 +88,7 @@ cmake --build build
 For more CMake options, consult:[docs/user-guide.md](docs/user-guide.md)
 <a name="keF6Z"></a>
 
-### Interpreter
+***Interpreter***
 
 Build commands:
 
@@ -196,3 +195,7 @@ For custom `wast` tests, create a new directory under `tests/spec` and place you
 ```cpp
 ./build/specUnitTests mytest/demo <0/1/2>
 ```
+
+***Notice***
+
+This project incorporates various third-party components, each under their respective open source licenses. For a comprehensive list of these components and the associated license information, please refer to the `NOTICE` file.
