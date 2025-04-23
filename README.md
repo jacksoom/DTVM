@@ -54,7 +54,7 @@ DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual mac
 └──────────────────────────────────────────────────--─────┘
 ```
 
-ZetaEngine stands as the core WebAssembly (WASM) runtime project within the DTVM ecosystem, developed by Ant Group Co. and licensed under the Apache License (Version 2.0) with LLVM exceptions.
+ZetaEngine stands as the core WebAssembly (WASM) runtime project within the DTVM ecosystem, licensed under the Apache License (Version 2.0) with LLVM exceptions.
 
 This powerful engine is designed to bring high-performance and efficient execution environment for WebAssembly applications.
 

@@ -9,6 +9,14 @@ Recommended compilation environment is as follows:
 - WABT >= 1.0.10
 - llvm 15 (only for multipass JIT)
 
+## Docker image
+
+The fastest way to set up the compilation environment is to use a Docker image or build it based on docker/Dockerfile.
+
+```
+docker pull dtvmdev1/dtvm-dev-x64:main
+```
+
 ## Interpreter
 
 Interpreter mode is the current default execution mode. No specific CMake parameters are needed during compilation. Reference compilation commands are as follows:
