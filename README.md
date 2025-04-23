@@ -25,13 +25,18 @@ DTVM introduces:
    * Features small codebase and binary library size compared to competitive Wasm implementations, minimizing potential attack surfaces while maintaining security and efficiency
    * Utilizes modern processor registers and exception handling mechanisms to address specialized requirements such as gas metering and boundary checks in JIT compilation
 
-4. **[SmartCogent](https://docs.zan.top/docs/quickstart-guide-smartcogent): AI-Powered Smart Contract Development and Auditing**
+4. **[SmartCogent](https://zan.top/0x/dtvm-smart-cogent): AI-Powered Smart Contract Development and Auditing**
    * Integrates code generation, security auditing, and repair workflows
    * Achieves 80%+ vulnerability detection accuracy and 85%+ automated repair success rates
    * Implements retrieval-augmented generation for smart contract lifecycle automation
    * Enhances development productivity and security
 
 ![SmartCogent Overflow](./resources/smart_cogent_overflow.png)
+
+
+> For more information about SmartCogent, including an *introduction video* and *detailed documentation*, please visit [SmartCogent website](https://zan.top/0x/dtvm-smart-cogent). 
+> You can also apply for a *trial license* there to experience SmartCogent's *powerful features* firsthand.
+
 
 The DTVM Engine introduces a Lazy-JIT compilation framework(code name is **ZetaEngine**) with Wasm runtime environment.
 
