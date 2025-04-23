@@ -1,35 +1,41 @@
 DTVM
 ===============
 
-DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual machine that addresses critical performance, determinism, and ecosystem compatibility challenges in blockchain networks. Building upon WebAssembly (Wasm) while maintaining full Ethereum Virtual Machine (EVM) ABI compatibility, DTVM introduces:
+DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual machine that addresses critical performance, determinism, and ecosystem compatibility challenges in blockchain networks. Building upon WebAssembly (Wasm) while maintaining full Ethereum Virtual Machine (EVM) ABI compatibility.
 
-1. **Deterministic Middle Intermediate Representation (dMIR)**
-   - Blockchain-specific intermediate representation for cross-platform deterministic execution
-   - Modular adaptation layers translating diverse instruction sets (now Wasm, EVM and RISC-V in the future) into unified dMIR
-   - Hybrid lazy-JIT compilation engine with dynamic optimization levels (O0~O2)
-   - Trampoline hot-switch mechanism for sub-millisecond post-deployment invocation
-
-2. **Multi-Language Smart Contract Development**
-   - Support for multiple programming languages (Solidity, C++, etc.)
-   - Cross-language contract interaction capabilities
-   - Ethereum ABI compatibility for seamless integration with existing Ethereum ecosystem
-   - Web3 SDK support for contract deployment and interaction
-
-2. **ZetaEngine: High-Performance WASM Runtime**
-   - Deterministic execution (dWasm) with strict security constraints
-   - Multiple execution modes: interpreter, singlepass JIT, and multipass JIT
-   - Optimized for blockchain smart contract environments
-   - Cross-platform deterministic execution runtime
-
-4. **SmartCogent: AI-Driven Development Tools**
-   - Integrated code generation, security auditing, and repair workflows
-   - 80%+ vulnerability detection accuracy and 85%+ automated repair success rates
-   - Retrieval-augmented generation for smart contract lifecycle automation
-   - Enhanced development productivity and security
+[Read the DTVM Research Paper](./resources/DTVM_paper.pdf)
 
 ![DTVM Stack Overview](./resources/dtvm_stack_overview.png)
 
-![DTVM Compile Framework](./resources/dtvm_lazy_jit.png)
+DTVM introduces:
+
+1. **Deterministic JIT Execution Engine with Enhanced Performance**
+
+* Deterministic Middle Intermediate Representation (dMIR), a blockchain-specific intermediate representation that ensures deterministic execution guarantees
+* Modular adaptation layers translating diverse instruction sets (now Wasm, EVM and RISC-V in the future) into unified dMIR
+* Hybrid lazy-JIT compilation engine with dynamic optimization levels (O0~O2), thereby optimizing both compilation efficiency and execution speed
+
+2. **EVM ABI Compatibility and Multi-Language Ecosystem Support**
+
+* Compatibility with the latest Solidity 0.8.x specification while expanding support to six frontend programming languages (e.g. Solidity, C/C++, Rust, Java, Golang, and AssemblyScript). 
+* Cross-language contract interaction capabilities
+* Ethereum ABI compatibility for seamless integration with existing Ethereum ecosystem
+* Web3 SDK support for contract deployment and interaction
+
+3. **TEE-Native Security and Hardware-Optimized Efficiency**
+
+* For application-level TEEs such as Intel SGX, the DTVM Stack offers high portability through a minimized Trusted Computing Base (TCB).
+* Small codebase and binary library size compared to competitive Wasm implementations, thereby minimizing potential attack surfaces while maintaining security and efficiency. 
+* Modern processor registers and exception handling mechanisms to address specialized requirements such as gas metering and boundary checks in JIT compilation.
+
+4. **AI-Powered Smart Contract Development and Auditing**
+
+* Integrated code generation, security auditing, and repair workflows
+* 80%+ vulnerability detection accuracy and 85%+ automated repair success rates
+* Retrieval-augmented generation for smart contract lifecycle automation
+* Enhanced development productivity and security
+
+![SmartCogent Overflow](./resources/smart_cogent_overflow.png)
 
 ZetaEngine stands as the core WebAssembly (WASM) runtime project within the DTVM ecosystem, licensed under the Apache License (Version 2.0) with LLVM exceptions.
 
@@ -37,16 +43,52 @@ This powerful engine is designed to bring high-performance and efficient executi
 
 As a WebAssembly (WASM) runtime project, this powerful engine is specifically tailored for blockchain smart contract environments, providing a high-performance, secure, and cross-platform deterministic execution runtime. It offers a comprehensive suite of blockchain-specific design features, addressing the unique challenges of distributed computing and smart contract execution. The engine delivers exceptional performance, robust security mechanisms, and guaranteed cross-platform consistency critical for blockchain and decentralized application (dApp) ecosystems.
 
+![DTVM Compile Framework](./resources/dtvm_lazy_jit.png)
+
 This product incorporates various third-party components, each under their respective open source licenses. For a comprehensive list of these components and the associated license information, please refer to the `NOTICE` file.
 
 # Introduction
-Currently, the virtual machine supports `interpreter` mode, `singlepass` mode, and `multipass` mode, with `interpreter` mode being the default execution mode.
+Currently, the virtual machine supports `multipass` mode(including `FLAT` & `FLAS` mode), `singlepass` mode, and `interpreter` mode.
+
+**FLAT Mode** : Function Level fAst Transpile mode
+
+**FLAS Mode**: Function Level Adaptive hot-Switching mode
 
 ZetaEngine offers C++, C, and Rust APIs for use as a library, or as a command-line tool for WASM execution. And you can use it in SGX enclaves.
 
 <a name="teEUv"></a>
 ## Build
 <a name="fj3o5"></a>
+
+### Multipass JIT
+`multipass JIT` mode relies on `LLVM` 15. You can install llvm-15 by download pre-built llvm 15 from github.
+
+Then, build ZetaEngine with `multipass JIT` mode:
+
+```cpp
+cmake -B build -DCMAKE_BUILD_TYPE=Debug -DZEN_ENABLE_MULTIPASS_JIT=ON -DLLVM_DIR=<llvm-path>/lib/cmake/llvm -DLLVM_SYS_150_PREFIX=<llvm-path>
+cmake --build build
+```
+
+Consult: [docs/user-guide.md](docs/user-guide.md) for other CMake options.
+
+Note: multipass JIT currently only supports the x86-64 target.
+
+When the multipass lazy mode is enabled (via the `--enable-multipass-lazy` CLI option), the engine automatically switches between `FLAS`  and `FLAT` modes.
+
+### Singlepass JIT
+
+Singlepass JIT mode offers a lightweight alternative that doesn't require LLVM installation. It provides cross-platform compatibility, supporting both x86 and ARM64 architectures for flexible deployment options.
+
+Build commands:
+
+```cpp
+cmake -B build -DCMAKE_BUILD_TYPE=Debug -DZEN_ENABLE_SINGLEPASS_JIT=ON
+cmake --build build
+```
+For more CMake options, consult:[docs/user-guide.md](docs/user-guide.md)
+<a name="keF6Z"></a>
+
 ### Interpreter
 
 Build commands:
@@ -59,31 +101,6 @@ cmake --build build
 For more CMake options, consult: [docs/user-guide.md](docs/user-guide.md)
 
 <a name="p1COz"></a>
-### singlepass JIT
-
-Build commands:
-
-```cpp
-cmake -B build -DCMAKE_BUILD_TYPE=Debug -DZEN_ENABLE_SINGLEPASS_JIT=ON
-cmake --build build
-```
-For more CMake options, consult:[docs/user-guide.md](docs/user-guide.md)
-<a name="keF6Z"></a>
-### multipass JIT
-`multipass JIT` mode relies on `LLVM` 15. You can install llvm-15 by download pre-built llvm 15 from github.
-
-If you use MacOS X, install it by `brew install llvm@15` and then the llvm 15 installed at `/usr/local/opt/llvm@15`.
-
-Then, build ZetaEngine with `multipass JIT` mode:
-
-```cpp
-cmake -B build -DCMAKE_BUILD_TYPE=Debug -DZEN_ENABLE_MULTIPASS_JIT=ON -DLLVM_DIR=<llvm-path>/lib/cmake/llvm -DLLVM_SYS_150_PREFIX=<llvm-path>
-cmake --build build
-```
-
-Consult: [docs/user-guide.md](docs/user-guide.md) for other CMake options.
-
-Note: multipass JIT currently only supports the x86-64 target.
 
 ## Use as a C/C++ library
 
@@ -127,11 +144,11 @@ webassembly>add 1 1
 dtvm --dir . -f add i32.wasm --fargs "3 1"
 0x4:i32
 
-dtvm --mode 0 i32.wasm  // interpreter mode
+dtvm --mode interpreter i32.wasm
 
-dtvm --mode 1 i32.wasm  // singlepass mode
+dtvm --mode singlepass i32.wasm
 
-dtvm --mode 2 i32.wasm  // multipass mode
+dtvm --mode multipass i32.wasm
 
 ```
 Refer to [docs/user-guide.md](docs/user-guide.md) for command-line arguments.
