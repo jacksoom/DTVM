@@ -1,14 +1,19 @@
 DTVM
 ===============
 
-DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual machine that provides a comprehensive solution for smart contract development and execution. It features:
+DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual machine that addresses critical performance, determinism, and ecosystem compatibility challenges in blockchain networks. Building upon WebAssembly (Wasm) while maintaining full Ethereum Virtual Machine (EVM) ABI compatibility, DTVM introduces:
 
-1. **Multi-Language Smart Contract Development**
-   - Support for multiple programming languages (C/C++, Rust, Solidity, etc.)
+1. **Deterministic Middle Intermediate Representation (dMIR)**
+   - Blockchain-specific intermediate representation for cross-platform deterministic execution
+   - Modular adaptation layers translating diverse instruction sets (now Wasm, EVM and RISC-V in the future) into unified dMIR
+   - Hybrid lazy-JIT compilation engine with dynamic optimization levels (O0~O2)
+   - Trampoline hot-switch mechanism for sub-millisecond post-deployment invocation
+
+2. **Multi-Language Smart Contract Development**
+   - Support for multiple programming languages (Solidity, C++, etc.)
    - Cross-language contract interaction capabilities
    - Ethereum ABI compatibility for seamless integration with existing Ethereum ecosystem
    - Web3 SDK support for contract deployment and interaction
-   - Progressive support for additional languages (More languages will be supported in future releases)
 
 2. **ZetaEngine: High-Performance WASM Runtime**
    - Deterministic execution (dWasm) with strict security constraints
@@ -16,50 +21,19 @@ DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual mac
    - Optimized for blockchain smart contract environments
    - Cross-platform deterministic execution runtime
 
-3. **AI-Driven Toolchain**
-   - Integrated code generation, auditing, and repair workflows
+4. **SmartCogent: AI-Driven Development Tools**
+   - Integrated code generation, security auditing, and repair workflows
+   - 80%+ vulnerability detection accuracy and 85%+ automated repair success rates
+   - Retrieval-augmented generation for smart contract lifecycle automation
    - Enhanced development productivity and security
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                     DTVM Ecosystem                      │
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
-│  │  C/C++      │    │  Rust       │    │  Solidity   │  │
-│  │  Contracts  │    │  Contracts  │    │  Contracts  │  │
-│  └──────┬──────┘    └──────┬──────┘    └──────┬──────┘  │
-│         │                  │                  │         │
-│         └─────────┬────────┴─────────-────────┘         │
-│                   │                                     │
-│         ┌─────────▼─────────┐                           │
-│         │  WASM Compiler    │                           │
-│         └─────────┬─────────┘                           │
-│                   │                                     │
-│         ┌─────────▼─────────┐                           │
-│         │  ZetaEngine       │                           │
-│         │  (WASM Runtime)   │                           │
-│         └─────────┬─────────┘                           │
-│                   │                                     │
-│         ┌─────────▼─────────┐                           │
-│         │  Ethereum ABI     │                           │
-│         │  Compatibility    │                           │
-│         └─────────┬─────────┘                           │
-│                   │                                     │
-│         ┌─────────▼─────────┐                           │
-│         │  Web3 SDK         │                           │
-│         │  Integration      │                           │
-│         └───────────────────┘                           │
-│                                                         │
-└──────────────────────────────────────────────────--─────┘
-```
+![DTVM Stack Overview](./resources/dtvm_stack_overview.png)
 
 ZetaEngine stands as the core WebAssembly (WASM) runtime project within the DTVM ecosystem, licensed under the Apache License (Version 2.0) with LLVM exceptions.
 
 This powerful engine is designed to bring high-performance and efficient execution environment for WebAssembly applications.
 
 As a WebAssembly (WASM) runtime project, this powerful engine is specifically tailored for blockchain smart contract environments, providing a high-performance, secure, and cross-platform deterministic execution runtime. It offers a comprehensive suite of blockchain-specific design features, addressing the unique challenges of distributed computing and smart contract execution. The engine delivers exceptional performance, robust security mechanisms, and guaranteed cross-platform consistency critical for blockchain and decentralized application (dApp) ecosystems.
-
 
 This product incorporates various third-party components, each under their respective open source licenses. For a comprehensive list of these components and the associated license information, please refer to the `NOTICE` file.
 
