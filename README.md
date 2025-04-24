@@ -3,7 +3,7 @@ DTVM
 
 DTVM (DeTerministic Virtual Machine) is a next-generation blockchain virtual machine that addresses critical performance, determinism, and ecosystem compatibility challenges in blockchain networks. Building upon WebAssembly (Wasm) while maintaining full Ethereum Virtual Machine (EVM) ABI compatibility.
 
-[Read the DTVM Technical Paper](./resources/DTVM_paper.pdf)
+[Read the DTVM Technical Paper](https://arxiv.org/abs/2504.16552)
 
 ![DTVM Stack Overview](./resources/dtvm_stack_overview.png)
 
