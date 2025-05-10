@@ -1,0 +1,101 @@
+--2025-05-07 06:09:47--  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Resolving ftp.gnu.org (ftp.gnu.org)... 209.51.188.20, 2001:470:142:3::b
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:02:28--  (try: 2)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:06:51--  (try: 3)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:11:14--  (try: 4)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:15:42--  (try: 5)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:20:09--  (try: 6)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:24:36--  (try: 7)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:29:03--  (try: 8)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:33:35--  (try: 9)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:38:06--  (try:10)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:42:37--  (try:11)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:47:08--  (try:12)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:51:38--  (try:13)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 13:56:08--  (try:14)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 14:00:39--  (try:15)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 14:05:09--  (try:16)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 14:09:39--  (try:17)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 14:14:10--  (try:18)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 14:18:40--  (try:19)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Retrying.
+
+--2025-05-07 14:23:10--  (try:20)  https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.gz
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... failed: Connection timed out.
+Connecting to ftp.gnu.org (ftp.gnu.org)|2001:470:142:3::b|:443... failed: Connection timed out.
+Giving up.
+
