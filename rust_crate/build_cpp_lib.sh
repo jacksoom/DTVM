@@ -1,5 +1,9 @@
 #!/bin/bash
+
 cd ..
+mv WORKSPACE_no_llvm WORKSPACE
+mv BUILD.bazel1.2.1 BUILD.bazel
+
 if [ "$1" != "cache" ]; then
     rm -rf bazel-bin bazel-out bazel-testlogs bazel-dtvm
     bazel clean --expunge
